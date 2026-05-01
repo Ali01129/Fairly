@@ -77,8 +77,8 @@ export const GroupCard: React.FC<GroupCardProps> = ({
 
       <View className="shrink-0 w-[104px] items-end">
         <Text
-          className="text-[10px] font-semibold uppercase mb-0.5"
-          style={{ letterSpacing: 0.5, color: getBalanceColor() }}
+          className="text-md font-semibold uppercase mb-0.5 text-[#B1B0AB]"
+          style={{ letterSpacing: 0.5 }}
         >
           {getBalanceLabel()}
         </Text>

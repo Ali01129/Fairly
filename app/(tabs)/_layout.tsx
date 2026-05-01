@@ -1,5 +1,10 @@
 import { useThemeColor } from "@/hooks/use-theme-color";
-import { MaterialCommunityIcons, Octicons } from "@expo/vector-icons";
+import {
+  Entypo,
+  Feather,
+  FontAwesome5,
+  MaterialIcons,
+} from "@expo/vector-icons";
 import {
   Icon,
   Label,
@@ -15,14 +20,25 @@ export default function TabLayout() {
     <NativeTabs
       backgroundColor={backgroundColor}
       disableTransparentOnScrollEdge
+      iconColor="#797979"
+      tintColor="#ffffff"
+      indicatorColor="#000000"
     >
       <NativeTabs.Trigger name="index">
         <Label>Home</Label>
-        <Icon src={<VectorIcon family={Octicons} name="home" />} />
+        <Icon src={<VectorIcon family={FontAwesome5} name="home" />} />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="activity">
+        <Label>Activity</Label>
+        <Icon src={<VectorIcon family={Feather} name="activity" />} />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="insights">
+        <Label>Insights</Label>
+        <Icon src={<VectorIcon family={Entypo} name="bar-graph" />} />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="setting">
         <Label>Setting</Label>
-        <Icon src={<VectorIcon family={MaterialCommunityIcons} name="cog" />} />
+        <Icon src={<VectorIcon family={MaterialIcons} name="person" />} />
       </NativeTabs.Trigger>
     </NativeTabs>
   );
