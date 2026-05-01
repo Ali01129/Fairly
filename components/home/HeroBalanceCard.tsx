@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
 interface HeroBalanceCardProps {
   overallNet: number;
@@ -32,36 +32,70 @@ export const HeroBalanceCard: React.FC<HeroBalanceCardProps> = ({
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.heroCard}>
-        <View style={styles.header}>
-          <Text style={styles.headerLabel}>Overall balance</Text>
-          <Text style={styles.dateLabel}>APR 2026</Text>
+    <View className="py-3">
+      <View className="bg-[#101D42] rounded-[22px] p-7 border border-[rgba(255,255,255,0.22)]">
+        <View className="flex-row justify-between items-center mb-4">
+          <Text
+            className="text-sm font-semibold text-[rgba(243,247,255,0.72)] uppercase"
+            style={{ letterSpacing: 0.7 }}
+          >
+            Overall balance
+          </Text>
+          <Text
+            className="text-sm text-[rgba(243,247,255,0.65)] font-mono font-semibold"
+            style={{ letterSpacing: 1.1 }}
+          >
+            APR 2026
+          </Text>
         </View>
 
-        <View style={styles.amountContainer}>
-          <Text style={styles.amount}>
+        <View className="mb-2">
+          <Text
+            className="text-6xl text-white font-semibold"
+            style={{ lineHeight: 58, letterSpacing: -1 }}
+          >
             {overallNet < 0 ? "-" : "+"}
             {symbol}
             {Math.abs(overallNet).toFixed(2)}
           </Text>
         </View>
 
-        <Text style={styles.statusMessage}>{getStatusMessage()}</Text>
+        <Text
+          className="text-[15px] text-[rgba(241,245,255,0.86)] font-medium"
+          style={{ letterSpacing: -0.3 }}
+        >
+          {getStatusMessage()}
+        </Text>
 
-        <View style={styles.divider} />
+        <View className="my-6 h-px bg-[rgba(255,255,255,0.2)]" />
 
-        <View style={styles.statsRow}>
-          <View style={styles.statCol}>
-            <Text style={styles.statLabel}>Owed to you</Text>
-            <Text style={styles.amountOwed}>
+        <View className="flex-row justify-between items-center gap-3">
+          <View className="flex-1">
+            <Text
+              className="text-sm text-[rgba(243,247,255,0.72)] uppercase font-semibold mb-1.5"
+              style={{ letterSpacing: 0.9 }}
+            >
+              Owed to you
+            </Text>
+            <Text
+              className="text-[28px] font-semibold text-[#00fc4c]"
+              style={{ letterSpacing: -0.5 }}
+            >
               {symbol}
               {totalOwed.toFixed(2)}
             </Text>
           </View>
-          <View style={styles.statCol}>
-            <Text style={styles.statLabel}>You owe</Text>
-            <Text style={styles.amountOwe}>
+          <View className="flex-1">
+            <Text
+              className="text-sm text-[rgba(243,247,255,0.72)] uppercase font-semibold mb-1.5"
+              style={{ letterSpacing: 0.9 }}
+            >
+              You owe
+            </Text>
+            <Text
+              className="text-[28px] font-semibold text-[#d76250]"
+              style={{ letterSpacing: -0.5 }}
+            >
               {symbol}
               {totalOwe.toFixed(2)}
             </Text>
@@ -71,87 +105,3 @@ export const HeroBalanceCard: React.FC<HeroBalanceCardProps> = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    paddingVertical: 12,
-  },
-  heroCard: {
-    backgroundColor: "#101D42",
-    borderRadius: 22,
-    padding: 28,
-    borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.22)",
-  },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 16,
-  },
-  headerLabel: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: "rgba(243, 247, 255, 0.72)",
-    letterSpacing: 0.7,
-    textTransform: "uppercase",
-  },
-  dateLabel: {
-    fontSize: 14,
-    color: "rgba(243, 247, 255, 0.65)",
-    letterSpacing: 1.1,
-    fontFamily: "monospace",
-    fontWeight: "600",
-  },
-  amountContainer: {
-    marginBottom: 8,
-  },
-  amount: {
-    fontSize: 60,
-    color: "#fff",
-    fontWeight: "600",
-    lineHeight: 58,
-    letterSpacing: -1,
-  },
-  statusMessage: {
-    fontSize: 15,
-    color: "rgba(241, 245, 255, 0.86)",
-    marginTop: 3,
-    letterSpacing: -0.3,
-    fontWeight: "500",
-  },
-  divider: {
-    marginVertical: 24,
-    height: 1,
-    backgroundColor: "rgba(255, 255, 255, 0.2)",
-  },
-  statsRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    gap: 12,
-  },
-  statCol: {
-    flex: 1,
-  },
-  statLabel: {
-    fontSize: 14,
-    color: "rgba(243, 247, 255, 0.72)",
-    textTransform: "uppercase",
-    letterSpacing: 0.9,
-    marginBottom: 6,
-    fontWeight: "600",
-  },
-  amountOwed: {
-    fontSize: 28,
-    fontWeight: "600",
-    color: "#00fc4c",
-    letterSpacing: -0.5,
-  },
-  amountOwe: {
-    fontSize: 28,
-    fontWeight: "600",
-    color: "#d76250",
-    letterSpacing: -0.5,
-  },
-});

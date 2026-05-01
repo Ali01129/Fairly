@@ -1,5 +1,6 @@
+import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 
 interface NewGroupCardProps {
   onPress: () => void;
@@ -7,69 +8,30 @@ interface NewGroupCardProps {
 
 export const NewGroupCard: React.FC<NewGroupCardProps> = ({ onPress }) => {
   return (
-    <Pressable style={styles.container} onPress={onPress}>
-      <View style={styles.plusBox}>
-        <Text style={styles.plusIcon}>+</Text>
+    <Pressable
+      className="flex-row items-center gap-3 p-5 border-2 border-dashed border-[#DEDCD4] rounded-[16px] mt-2 mb-2.5 bg-[#FCFBF8]"
+      onPress={onPress}
+    >
+      <View className="w-14 h-14 rounded-[11px] bg-[#F4F1EA] justify-center items-center shrink-0">
+        <Text className="text-3xl font-light text-[#929089]">+</Text>
       </View>
 
-      <View style={styles.content}>
-        <Text style={styles.title}>Start a new group</Text>
-        <Text style={styles.subtitle}>Trip, household, or whatever</Text>
+      <View className="flex-1">
+        <Text
+          className="text-xl font-medium text-[#4A4A48] mb-0.5"
+          style={{ letterSpacing: -0.45 }}
+        >
+          Start a new group
+        </Text>
+        <Text
+          className="text-md text-[#B2B0A8]"
+          style={{ letterSpacing: -0.3 }}
+        >
+          Trip, household, or whatever
+        </Text>
       </View>
 
-      <Text style={styles.arrow}>→</Text>
+      <Ionicons name="chevron-forward" size={24} color="#8D8B85" />
     </Pressable>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    borderWidth: 1,
-    borderStyle: "dashed",
-    borderColor: "#DEDCD4",
-    borderRadius: 16,
-    marginTop: 8,
-    marginBottom: 10,
-    backgroundColor: "#FCFBF8",
-  },
-  plusBox: {
-    width: 42,
-    height: 42,
-    borderRadius: 11,
-    backgroundColor: "#F4F1EA",
-    justifyContent: "center",
-    alignItems: "center",
-    flexShrink: 0,
-  },
-  plusIcon: {
-    fontSize: 25,
-    fontWeight: "300",
-    color: "#929089",
-  },
-  content: {
-    flex: 1,
-    textAlign: "left",
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: "500",
-    color: "#4A4A48",
-    marginBottom: 1,
-    letterSpacing: -0.45,
-  },
-  subtitle: {
-    fontSize: 14,
-    color: "#B2B0A8",
-    letterSpacing: -0.3,
-  },
-  arrow: {
-    fontSize: 27,
-    color: "#8D8B85",
-    fontWeight: "300",
-  },
-});

@@ -1,6 +1,6 @@
 import { useThemeColor } from "@/hooks/use-theme-color";
 import React, { useState } from "react";
-import { Alert, ScrollView, StyleSheet, View } from "react-native";
+import { Alert, ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   GroupCard,
@@ -97,8 +97,8 @@ export default function HomeScreen() {
   };
 
   return (
-    <SafeAreaView style={[styles.safeArea, { backgroundColor }]}>
-      <View style={[styles.container, { backgroundColor }]}>
+    <SafeAreaView className="flex-1 p-5" style={{ backgroundColor }}>
+      <View className="flex-1" style={{ backgroundColor }}>
         {/* Top Bar */}
         <TopBar
           onSearch={handleSearch}
@@ -108,8 +108,11 @@ export default function HomeScreen() {
 
         {/* Scrollable Content */}
         <ScrollView
-          style={styles.scrollView}
-          contentContainerStyle={styles.scrollContent}
+          className="flex-1"
+          contentContainerStyle={{
+            paddingBottom: 20,
+            paddingTop: 4,
+          }}
           showsVerticalScrollIndicator={false}
         >
           {/* Hero Balance Card */}
@@ -131,7 +134,7 @@ export default function HomeScreen() {
           />
 
           {/* Group Cards */}
-          <View style={styles.groupsContainer}>
+          <View>
             {groupsWithBalance.map(({ group, myNet }) => (
               <GroupCard
                 key={group.id}
@@ -147,30 +150,9 @@ export default function HomeScreen() {
           <NewGroupCard onPress={handleNewGroup} />
 
           {/* Bottom Spacing */}
-          <View style={styles.bottomPadding} />
+          <View style={{ height: 30 }} />
         </ScrollView>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    padding: 20,
-  },
-  container: {
-    flex: 1,
-  },
-  scrollView: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingBottom: 20,
-    paddingTop: 4,
-  },
-  groupsContainer: {},
-  bottomPadding: {
-    height: 30,
-  },
-});
