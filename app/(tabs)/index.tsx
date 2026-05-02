@@ -1,3 +1,9 @@
+import {
+  Group,
+  GROUP_BALANCES,
+  GroupWithBalance,
+  MOCK_GROUPS,
+} from "@/constants/mockData";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import React, { useState } from "react";
 import { Alert, ScrollView, View } from "react-native";
@@ -11,49 +17,6 @@ import {
   TopBar,
 } from "../../components/home";
 
-// Mock data types
-interface Group {
-  id: string;
-  name: string;
-  emoji: string;
-  color: string;
-  members: string[];
-  expensesCount: number;
-}
-
-interface GroupWithBalance {
-  group: Group;
-  myNet: number;
-}
-
-// Mock data
-const MOCK_GROUPS: Group[] = [
-  {
-    id: "1",
-    name: "Lisbon, May '26",
-    emoji: "🇵🇹",
-    color: "#FF6B9D",
-    members: ["user1", "user2", "user3"],
-    expensesCount: 7,
-  },
-  {
-    id: "2",
-    name: "Flat 4B",
-    emoji: "🏠",
-    color: "#FFD93D",
-    members: ["user1", "user4"],
-    expensesCount: 4,
-  },
-  {
-    id: "3",
-    name: "Climbing crew",
-    emoji: "🧗",
-    color: "#6BCB77",
-    members: ["user1", "user2", "user5"],
-    expensesCount: 2,
-  },
-];
-
 export default function HomeScreen() {
   const [groups, setGroups] = useState<Group[]>(MOCK_GROUPS);
   const [activeTab, setActiveTab] = useState("All groups");
@@ -62,8 +25,7 @@ export default function HomeScreen() {
 
   // Calculate balances - mock data
   const groupsWithBalance: GroupWithBalance[] = groups.map((group) => {
-    const balances = [-131.02, -11.47, 16.33];
-    const myNet = balances[groups.indexOf(group)] || 0;
+    const myNet = GROUP_BALANCES[groups.indexOf(group)] || 0;
     return { group, myNet };
   });
 
