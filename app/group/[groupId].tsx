@@ -1,16 +1,16 @@
 import { ActivityRow, ActivitySectionLabel } from "@/components/activity";
 import {
-    GroupActionButtons,
-    GroupBalancesList,
-    GroupHeader,
-    GroupMembersList,
-    GroupSummaryCard,
+  GroupActionButtons,
+  GroupBalancesList,
+  GroupHeader,
+  GroupMembersList,
+  GroupSummaryCard,
 } from "@/components/group";
 import { SectionLabel } from "@/components/home";
 import {
-    getExpensesForGroup,
-    getGroupById,
-    getGroupSummaryById,
+  getExpensesForGroup,
+  getGroupById,
+  getGroupSummaryById,
 } from "@/constants/mockData";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -65,7 +65,7 @@ export default function GroupScreen() {
         <GroupHeader
           groupName={group.name}
           memberCount={group.members.length}
-          onBack={() => router.back()}
+          onBack={() => router.replace("/")}
         />
 
         <ScrollView
