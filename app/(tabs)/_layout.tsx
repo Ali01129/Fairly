@@ -21,8 +21,8 @@ export default function TabLayout() {
       backgroundColor={backgroundColor}
       disableTransparentOnScrollEdge
       iconColor="#797979"
-      tintColor="#ffffff"
-      indicatorColor="#000000"
+      tintColor="#000000"
+      indicatorColor="#f4f3ef"
     >
       <NativeTabs.Trigger name="index">
         <Label>Home</Label>

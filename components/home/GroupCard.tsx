@@ -35,7 +35,7 @@ export const GroupCard: React.FC<GroupCardProps> = ({
 
   return (
     <Pressable
-      className="flex-row items-center gap-3 rounded-2xl p-5 bg-white mb-3 border border-[#E0E0E0]"
+      className="flex-row items-center gap-3 rounded-3xl p-5 bg-white mb-3 border border-[#E0E0E0]"
       onPress={() => onPress(group.id)}
     >
       <View

@@ -110,7 +110,7 @@ export default function HomeScreen() {
         <ScrollView
           className="flex-1"
           contentContainerStyle={{
-            paddingBottom: 20,
+            paddingBottom: 96,
             paddingTop: 4,
           }}
           showsVerticalScrollIndicator={false}
@@ -150,7 +150,7 @@ export default function HomeScreen() {
           <NewGroupCard onPress={handleNewGroup} />
 
           {/* Bottom Spacing */}
-          <View style={{ height: 30 }} />
+          <View style={{ height: 96 }} />
         </ScrollView>
       </View>
     </SafeAreaView>
