@@ -82,7 +82,15 @@ export default function GroupScreen() {
             totalSpent={summary.totalSpent}
           />
 
-          <GroupActionButtons onAddExpense={() => {}} onSettleUp={() => {}} />
+          <GroupActionButtons
+            onAddExpense={() => {}}
+            onSettleUp={() =>
+              router.push({
+                pathname: "/group/settle-up",
+                params: { groupId: group.id },
+              })
+            }
+          />
 
           <SectionLabel title="BALANCES" subtitle="Simplified" />
           <GroupBalancesList balances={summary.balances} />
