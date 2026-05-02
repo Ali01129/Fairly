@@ -88,6 +88,17 @@ export default function SettleUpScreen() {
           <SettleUpConfirmButton
             amount={selectedBalance.amount}
             symbol={selectedBalance.symbol}
+            onPress={() =>
+              router.push({
+                pathname: "/group/settle-success" as never,
+                params: {
+                  groupId: group.id,
+                  amount: Math.abs(selectedBalance.amount).toFixed(2),
+                  symbol: selectedBalance.symbol,
+                  toName: selectedBalance.name,
+                },
+              })
+            }
           />
         </View>
       </View>
