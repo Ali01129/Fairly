@@ -7,9 +7,7 @@ import {
   ActivitySectionLabel,
   ActivityTabs,
 } from "@/components/activity";
-import {
-  ACTIVITY_SECTIONS
-} from "@/constants/mockData";
+import { ACTIVITY_SECTIONS } from "@/constants/mockData";
 import { useThemeColor } from "@/hooks/use-theme-color";
 
 export default function ActivityScreen() {
@@ -31,7 +29,7 @@ export default function ActivityScreen() {
       <View className="flex-1 px-5 pt-2">
         <View className="flex-row items-start justify-between">
           <Text
-            className="text-[34px] font-black text-[#1B1B1B]"
+            className="text-4xl font-black text-[#1B1B1B]"
             style={{ letterSpacing: -1.2, lineHeight: 36 }}
           >
             Activity

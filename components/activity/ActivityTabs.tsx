@@ -24,7 +24,7 @@ export default function ActivityTabs({
             className={`h-[46px] shrink-0 justify-center rounded-3xl px-4 ${isActive ? "bg-[#101013]" : "bg-[#F4F3EF]"}`}
           >
             <Text
-              className={`text-[15px] ${isActive ? "font-semibold text-white" : "font-normal text-[#3D3D3D]"}`}
+              className={`text-base ${isActive ? "font-semibold text-white" : "font-normal text-[#3D3D3D]"}`}
               style={{ letterSpacing: -0.2 }}
             >
               {tab}

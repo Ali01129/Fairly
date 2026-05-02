@@ -30,7 +30,7 @@ export default function ActivityRow({ item }: { item: ActivityItem }) {
         <View className="flex-row items-start gap-2">
           <View className="flex-1 min-w-0">
             <Text
-              className="text-[15px] text-[#222222] leading-5"
+              className="text-base text-[#222222] leading-5"
               style={{ letterSpacing: -0.25 }}
             >
               <Text className="font-semibold">{item.person}</Text>{" "}
@@ -49,7 +49,7 @@ export default function ActivityRow({ item }: { item: ActivityItem }) {
 
       <View className="items-end shrink-0">
         <Text
-          className="text-[17px] font-semibold"
+          className="text-lg font-semibold"
           style={{ letterSpacing: -0.45, color: amountColor }}
         >
           {item.amount > 0 ? "+" : item.amount < 0 ? "-" : ""}

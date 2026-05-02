@@ -22,6 +22,7 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="group/[groupId]" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="dark" />
     </ThemeProvider>

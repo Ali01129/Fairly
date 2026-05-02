@@ -60,7 +60,7 @@ export const GroupCard: React.FC<GroupCardProps> = ({
                 className="w-5 h-5 rounded-full bg-[#18273C] justify-center items-center border border-[#F7F6F1]"
                 style={{ marginLeft: idx > 0 ? -8 : 0 }}
               >
-                <Text className="text-[8px] font-bold text-[#F4F5F8]">
+                <Text className="text-xs font-bold text-[#F4F5F8]">
                   {memberId.charAt(0).toUpperCase()}
                 </Text>
               </View>

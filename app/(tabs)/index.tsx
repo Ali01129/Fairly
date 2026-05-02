@@ -5,6 +5,7 @@ import {
   MOCK_GROUPS,
 } from "@/constants/mockData";
 import { useThemeColor } from "@/hooks/use-theme-color";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Alert, ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -22,6 +23,7 @@ export default function HomeScreen() {
   const [activeTab, setActiveTab] = useState("All groups");
   const currencySymbol = "€";
   const backgroundColor = useThemeColor({}, "background");
+  const router = useRouter();
 
   // Calculate balances - mock data
   const groupsWithBalance: GroupWithBalance[] = groups.map((group) => {
@@ -43,7 +45,7 @@ export default function HomeScreen() {
 
   // Handlers
   const handleOpenGroup = (groupId: string) => {
-    Alert.alert("Group", `Opening group: ${groupId}`);
+    router.push({ pathname: "/group/[groupId]", params: { groupId } });
   };
 
   const handleNewGroup = () => {

@@ -14,6 +14,32 @@ export interface GroupWithBalance {
   myNet: number;
 }
 
+export interface GroupBalanceItem {
+  id: string;
+  name: string;
+  relation: string;
+  amount: number;
+  symbol: string;
+  avatar: string;
+  color: string;
+}
+
+export interface GroupMemberItem {
+  id: string;
+  name: string;
+  amount: number;
+  symbol: string;
+  avatar: string;
+  color: string;
+}
+
+export interface GroupSummary {
+  netBalance: number;
+  totalSpent: number;
+  balances: GroupBalanceItem[];
+  members: GroupMemberItem[];
+}
+
 export const MOCK_GROUPS: Group[] = [
   {
     id: "1",
@@ -42,6 +68,157 @@ export const MOCK_GROUPS: Group[] = [
 ];
 
 export const GROUP_BALANCES = [-131.02, -11.47, 16.33];
+
+export const GROUP_SUMMARIES_BY_ID: Record<string, GroupSummary> = {
+  "1": {
+    netBalance: -131.02,
+    totalSpent: 1149.7,
+    balances: [
+      {
+        id: "1-you",
+        name: "Amélie",
+        relation: "You owe",
+        amount: -131.02,
+        symbol: "€",
+        avatar: "AM",
+        color: "#2563EB",
+      },
+      {
+        id: "1-rohan",
+        name: "Rohan",
+        relation: "Owes you",
+        amount: 185.42,
+        symbol: "€",
+        avatar: "RO",
+        color: "#15803D",
+      },
+      {
+        id: "1-sofia",
+        name: "Sofia",
+        relation: "Owes you",
+        amount: 268.92,
+        symbol: "€",
+        avatar: "SO",
+        color: "#D9482A",
+      },
+    ],
+    members: [
+      {
+        id: "1-you",
+        name: "You",
+        amount: -131.02,
+        symbol: "€",
+        avatar: "YO",
+        color: "#111111",
+      },
+      {
+        id: "1-amelie",
+        name: "Amélie",
+        amount: 585.37,
+        symbol: "€",
+        avatar: "AM",
+        color: "#2563EB",
+      },
+      {
+        id: "1-rohan",
+        name: "Rohan",
+        amount: -185.42,
+        symbol: "€",
+        avatar: "RO",
+        color: "#15803D",
+      },
+      {
+        id: "1-sofia",
+        name: "Sofia",
+        amount: -268.92,
+        symbol: "€",
+        avatar: "SO",
+        color: "#D9482A",
+      },
+    ],
+  },
+  "2": {
+    netBalance: -11.47,
+    totalSpent: 428.5,
+    balances: [
+      {
+        id: "2-you",
+        name: "Maya",
+        relation: "You owe",
+        amount: -11.47,
+        symbol: "€",
+        avatar: "MY",
+        color: "#2563EB",
+      },
+    ],
+    members: [
+      {
+        id: "2-you",
+        name: "You",
+        amount: -11.47,
+        symbol: "€",
+        avatar: "YO",
+        color: "#111111",
+      },
+      {
+        id: "2-maya",
+        name: "Maya",
+        amount: 11.47,
+        symbol: "€",
+        avatar: "MY",
+        color: "#2563EB",
+      },
+    ],
+  },
+  "3": {
+    netBalance: 16.33,
+    totalSpent: 312.3,
+    balances: [
+      {
+        id: "3-you",
+        name: "Noah",
+        relation: "Owes you",
+        amount: 16.33,
+        symbol: "€",
+        avatar: "NO",
+        color: "#15803D",
+      },
+    ],
+    members: [
+      {
+        id: "3-you",
+        name: "You",
+        amount: 16.33,
+        symbol: "€",
+        avatar: "YO",
+        color: "#111111",
+      },
+      {
+        id: "3-noah",
+        name: "Noah",
+        amount: -16.33,
+        symbol: "€",
+        avatar: "NO",
+        color: "#15803D",
+      },
+    ],
+  },
+};
+
+export function getGroupSummaryById(groupId: string): GroupSummary | undefined {
+  return GROUP_SUMMARIES_BY_ID[groupId];
+}
+
+export function getGroupById(groupId: string): Group | undefined {
+  return MOCK_GROUPS.find((group) => group.id === groupId);
+}
+
+export function getExpensesForGroup(groupName: string): ActivitySection[] {
+  return ACTIVITY_SECTIONS.map((section) => ({
+    ...section,
+    items: section.items.filter((item) => item.group === groupName),
+  })).filter((section) => section.items.length > 0);
+}
 
 // ===== Activity Screen Types & Data =====
 

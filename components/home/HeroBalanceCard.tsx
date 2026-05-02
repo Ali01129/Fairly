@@ -61,7 +61,7 @@ export const HeroBalanceCard: React.FC<HeroBalanceCardProps> = ({
         </View>
 
         <Text
-          className="text-[15px] text-[rgba(241,245,255,0.86)] font-medium"
+          className="text-base text-[rgba(241,245,255,0.86)] font-medium"
           style={{ letterSpacing: -0.3 }}
         >
           {getStatusMessage()}
@@ -78,7 +78,7 @@ export const HeroBalanceCard: React.FC<HeroBalanceCardProps> = ({
               Owed to you
             </Text>
             <Text
-              className="text-[28px] font-semibold text-[#00fc4c]"
+              className="text-3xl font-semibold text-[#00fc4c]"
               style={{ letterSpacing: -0.5 }}
             >
               {symbol}
@@ -93,7 +93,7 @@ export const HeroBalanceCard: React.FC<HeroBalanceCardProps> = ({
               You owe
             </Text>
             <Text
-              className="text-[28px] font-semibold text-[#d76250]"
+              className="text-3xl font-semibold text-[#d76250]"
               style={{ letterSpacing: -0.5 }}
             >
               {symbol}

@@ -16,7 +16,7 @@ export default function InsightsHeader({
   return (
     <View className="flex-row items-center justify-between">
       <Text
-        className="text-[34px] font-black text-[#1B1B1B]"
+        className="text-4xl font-black text-[#1B1B1B]"
         style={{ letterSpacing: -1.2, lineHeight: 36 }}
       >
         Insights
@@ -36,7 +36,7 @@ export default function InsightsHeader({
               }`}
             >
               <Text
-                className={`text-[15px] ${
+                className={`text-base ${
                   isActive
                     ? "font-semibold text-white"
                     : "font-normal text-[#3D3D3D]"
