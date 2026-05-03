@@ -83,7 +83,12 @@ export default function GroupScreen() {
           />
 
           <GroupActionButtons
-            onAddExpense={() => {}}
+            onAddExpense={() =>
+              router.push({
+                pathname: "/group/add-expense" as never,
+                params: { groupId: group.id },
+              })
+            }
             onSettleUp={() =>
               router.push({
                 pathname: "/group/settle-up",
