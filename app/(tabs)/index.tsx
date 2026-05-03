@@ -49,7 +49,7 @@ export default function HomeScreen() {
   };
 
   const handleNewGroup = () => {
-    Alert.alert("New Group", "Create a new group");
+    router.push("/group/new-group");
   };
 
   const handleSearch = () => {
