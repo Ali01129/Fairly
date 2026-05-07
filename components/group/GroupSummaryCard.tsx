@@ -1,8 +1,10 @@
+import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { Text, View } from "react-native";
 
 interface GroupSummaryCardProps {
-  emoji: string;
+  emoji?: string;
+  icon?: keyof typeof Feather.glyphMap;
   color: string;
   owedLabel: string;
   netBalance: number;
@@ -16,6 +18,7 @@ function formatAmount(amount: number, symbol: string) {
 
 export const GroupSummaryCard: React.FC<GroupSummaryCardProps> = ({
   emoji,
+  icon,
   color,
   owedLabel,
   netBalance,
@@ -27,9 +30,13 @@ export const GroupSummaryCard: React.FC<GroupSummaryCardProps> = ({
       <View className="flex-row items-center gap-4">
         <View
           className="h-24 w-24 items-center justify-center rounded-[16px]"
-          style={{ backgroundColor: `${color}1A` }}
+          style={{ backgroundColor: color }}
         >
-          <Text className="text-5xl">{emoji}</Text>
+          {icon ? (
+            <Feather name={icon} size={34} color="#FFFFFF" />
+          ) : (
+            <Text className="text-5xl">{emoji}</Text>
+          )}
         </View>
 
         <View className="flex-1">

@@ -12,6 +12,7 @@ import {
   COLORS,
   getCategoriesForPeriod,
   getInsightGroupsForPeriod,
+  MOCK_GROUPS,
 } from "@/constants/mockData";
 import { useThemeColor } from "@/hooks/use-theme-color";
 
@@ -30,8 +31,27 @@ export default function InsightsScreen() {
   const maxCategory = Math.max(...categories.map((cat) => cat.amount));
 
   const categoriesWithPercentage = categories.map((cat) => ({
-    ...cat,
+    name: cat.name,
+    amount: cat.amount,
     percentage: (cat.amount / maxCategory) * 100,
+    color: cat.color,
+    // categories should provide an icon (Feather key) for the insights GroupCard
+    // map category names to Feather icons
+    icon: (
+      {
+        "Food & drink": "coffee",
+        Stay: "home",
+        Transport: "truck",
+        Fun: "smile",
+        Groceries: "shopping-bag",
+        Utilities: "zap",
+        Other: "more-horizontal",
+      } as Record<
+        string,
+        keyof typeof import("@expo/vector-icons").Feather.glyphMap
+      >
+    )[cat.name],
+    isCategory: true,
   }));
 
   // Calculate total and percentages for groups
@@ -44,7 +64,14 @@ export default function InsightsScreen() {
   const groupsWithPercentage = insightGroups.map((group, index) => ({
     ...group,
     percentage: (group.amount / maxGroup) * 100,
-    color: COLORS[index % COLORS.length],
+    // Prefer the real group's configured color/icon when available
+    color:
+      MOCK_GROUPS.find((g) => g.name === group.name)?.color ||
+      COLORS[index % COLORS.length],
+    icon: MOCK_GROUPS.find((g) => g.name === group.name)?.icon as
+      | keyof typeof import("@expo/vector-icons").Feather.glyphMap
+      | undefined,
+    emoji: MOCK_GROUPS.find((g) => g.name === group.name)?.emoji,
   }));
 
   return (

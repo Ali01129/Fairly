@@ -1,3 +1,4 @@
+import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { Text, View } from "react-native";
 
@@ -7,12 +8,20 @@ interface GroupCardProps {
     amount: number;
     percentage: number;
     color: string;
+    icon?: keyof typeof Feather.glyphMap;
+    emoji?: string;
+    isCategory?: boolean;
     memberCount?: number;
   }>;
   currency?: string;
+  card?: "category" | "group";
 }
 
-export default function GroupCard({ groups, currency = "€" }: GroupCardProps) {
+export default function GroupCard({
+  groups,
+  currency = "€",
+  card,
+}: GroupCardProps) {
   return (
     <View className="rounded-3xl border border-[#D8D8D8] bg-white p-6">
       {groups.map((group, index) => (
@@ -20,15 +29,56 @@ export default function GroupCard({ groups, currency = "€" }: GroupCardProps) 
           <View className={index > 0 ? "mt-4" : undefined}>
             <View className="flex-row items-center justify-between gap-4">
               <View className="flex-row items-center gap-3 flex-1">
-                <View
-                  className="w-12 h-12 rounded-[11px] justify-center items-center shrink-0"
-                  style={{ backgroundColor: `${group.color}1A` }}
-                >
-                  <View
-                    className="w-3 h-3 rounded-full"
-                    style={{ backgroundColor: group.color }}
-                  />
-                </View>
+                {(() => {
+                  const isCategory = card === "category" || group.isCategory;
+                  return (
+                    <View
+                      className="w-12 h-12 rounded-[11px] justify-center items-center shrink-0"
+                      style={
+                        isCategory
+                          ? {
+                              backgroundColor: `${group.color}1A`,
+                              borderWidth: 1,
+                              borderColor: "#ECE8DF",
+                            }
+                          : { backgroundColor: group.color }
+                      }
+                    >
+                      {isCategory ? (
+                        group.icon ? (
+                          <Feather
+                            name={group.icon}
+                            size={16}
+                            color="#1B1B1B"
+                          />
+                        ) : group.emoji ? (
+                          <Text
+                            className="text-2xl"
+                            style={{ color: "#1B1B1B" }}
+                          >
+                            {group.emoji}
+                          </Text>
+                        ) : (
+                          <View
+                            className="w-3 h-3 rounded-full"
+                            style={{ backgroundColor: "#1B1B1B" }}
+                          />
+                        )
+                      ) : group.icon ? (
+                        <Feather name={group.icon} size={16} color="#FFFFFF" />
+                      ) : group.emoji ? (
+                        <Text className="text-2xl text-white">
+                          {group.emoji}
+                        </Text>
+                      ) : (
+                        <View
+                          className="w-3 h-3 rounded-full"
+                          style={{ backgroundColor: "#FFFFFF" }}
+                        />
+                      )}
+                    </View>
+                  );
+                })()}
 
                 <View className="flex-1">
                   <Text className="text-lg font-bold text-[#11181C]">

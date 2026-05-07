@@ -1,11 +1,13 @@
+import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { Pressable, Text, View } from "react-native";
 
 type ActivityItem = {
   id: string;
   type: string;
-  emoji: string;
-  color: string;
+  categoryIcon?: keyof typeof Feather.glyphMap;
+  groupColor?: string;
+  emoji?: string;
   person: string;
   activity: string;
   group: string;
@@ -21,9 +23,19 @@ export default function ActivityRow({ item }: { item: ActivityItem }) {
     <Pressable className="flex-row items-center rounded-[24px] bg-[#fff] px-4 py-4 mb-3 border border-[#EFEAE1]">
       <View
         className="w-14 h-14 rounded-[11px] justify-center items-center shrink-0"
-        style={{ backgroundColor: `${item.color}1A` }}
+        style={{
+          backgroundColor: `${item.groupColor || "#CCCCCC"}1A`,
+          borderWidth: 1,
+          borderColor: "#ECE8DF",
+        }}
       >
-        <Text className="text-3xl">{item.emoji}</Text>
+        {item.categoryIcon ? (
+          <Feather name={item.categoryIcon} size={20} color="#1B1B1B" />
+        ) : item.emoji ? (
+          <Text className="text-3xl" style={{ color: "#1B1B1B" }}>
+            {item.emoji}
+          </Text>
+        ) : null}
       </View>
 
       <View className="flex-1 min-w-0 ml-3 mr-3">

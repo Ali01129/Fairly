@@ -1,9 +1,13 @@
+import { Feather } from "@expo/vector-icons";
+import { GROUP_COLORS } from "./types";
+
 // ===== Home Screen Types & Data =====
 
 export interface Group {
   id: string;
   name: string;
   emoji: string;
+  icon: keyof typeof Feather.glyphMap;
   color: string;
   members: string[];
   expensesCount: number;
@@ -45,7 +49,8 @@ export const MOCK_GROUPS: Group[] = [
     id: "1",
     name: "Lisbon, May '26",
     emoji: "🇵🇹",
-    color: "#FF6B9D",
+    icon: "image",
+    color: GROUP_COLORS[0],
     members: ["user1", "user2", "user3"],
     expensesCount: 7,
   },
@@ -53,7 +58,8 @@ export const MOCK_GROUPS: Group[] = [
     id: "2",
     name: "Flat 4B",
     emoji: "🏠",
-    color: "#FFD93D",
+    icon: "home",
+    color: GROUP_COLORS[1],
     members: ["user1", "user4"],
     expensesCount: 4,
   },
@@ -61,7 +67,8 @@ export const MOCK_GROUPS: Group[] = [
     id: "3",
     name: "Climbing crew",
     emoji: "🧗",
-    color: "#6BCB77",
+    icon: "users",
+    color: GROUP_COLORS[2],
     members: ["user1", "user2", "user5"],
     expensesCount: 2,
   },
@@ -225,8 +232,8 @@ export function getExpensesForGroup(groupName: string): ActivitySection[] {
 export interface ActivityItem {
   id: string;
   type: string;
-  emoji: string;
-  color: string;
+  categoryIcon?: keyof typeof Feather.glyphMap;
+  groupColor?: string;
   person: string;
   activity: string;
   group: string;
@@ -246,8 +253,8 @@ export const ACTIVITY_SECTIONS: ActivitySection[] = [
       {
         id: "1",
         type: "Expenses",
-        emoji: "🚕",
-        color: "#8BC4A4",
+        categoryIcon: "truck",
+        groupColor: GROUP_COLORS[0],
         person: "Amelie",
         activity: "added Uber to airport",
         group: "Lisbon, May '26",
@@ -262,8 +269,8 @@ export const ACTIVITY_SECTIONS: ActivitySection[] = [
       {
         id: "2",
         type: "Payments",
-        emoji: "🌟",
-        color: "#F0C38E",
+        categoryIcon: "smile",
+        groupColor: GROUP_COLORS[0],
         person: "You",
         activity: "added Fado night cover",
         group: "Lisbon, May '26",
@@ -273,8 +280,8 @@ export const ACTIVITY_SECTIONS: ActivitySection[] = [
       {
         id: "3",
         type: "Expenses",
-        emoji: "🍴",
-        color: "#FFB6A1",
+        categoryIcon: "coffee",
+        groupColor: GROUP_COLORS[0],
         person: "Rohan",
         activity: "added Lunch at Cervejaria",
         group: "Lisbon, May '26",
@@ -289,8 +296,8 @@ export const ACTIVITY_SECTIONS: ActivitySection[] = [
       {
         id: "4",
         type: "Expenses",
-        emoji: "🚌",
-        color: "#9BC8D9",
+        categoryIcon: "truck",
+        groupColor: GROUP_COLORS[0],
         person: "Rohan",
         activity: "added Tram passes (4)",
         group: "Lisbon, May '26",
@@ -300,8 +307,8 @@ export const ACTIVITY_SECTIONS: ActivitySection[] = [
       {
         id: "5",
         type: "@You",
-        emoji: "🍝",
-        color: "#FFC7A7",
+        categoryIcon: "coffee",
+        groupColor: GROUP_COLORS[0],
         person: "Sofia",
         activity: "added Pastéis de Belém",
         group: "Lisbon, May '26",
@@ -316,8 +323,8 @@ export const ACTIVITY_SECTIONS: ActivitySection[] = [
       {
         id: "6",
         type: "Expenses",
-        emoji: "🏠",
-        color: "#AFC5FF",
+        categoryIcon: "home",
+        groupColor: GROUP_COLORS[0],
         person: "Amelie",
         activity: "added Airbnb in Alfama",
         group: "Lisbon, May '26",
@@ -327,8 +334,8 @@ export const ACTIVITY_SECTIONS: ActivitySection[] = [
       {
         id: "7",
         type: "Payments",
-        emoji: "🍽️",
-        color: "#FFB6A1",
+        categoryIcon: "coffee",
+        groupColor: GROUP_COLORS[0],
         person: "You",
         activity: "added Time Out Market dinner",
         group: "Lisbon, May '26",
@@ -343,8 +350,8 @@ export const ACTIVITY_SECTIONS: ActivitySection[] = [
       {
         id: "8",
         type: "Payments",
-        emoji: "💳",
-        color: "#C7B8FF",
+        categoryIcon: "credit-card",
+        groupColor: GROUP_COLORS[1],
         person: "You",
         activity: "paid back the apartment deposit",
         group: "Flat 4B",

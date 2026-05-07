@@ -1,3 +1,4 @@
+import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { Pressable, Text, View } from "react-native";
 
@@ -6,6 +7,7 @@ interface GroupCardProps {
     id: string;
     name: string;
     emoji: string;
+    icon?: keyof typeof Feather.glyphMap;
     color: string;
     members: string[];
     expensesCount: number;
@@ -40,9 +42,13 @@ export const GroupCard: React.FC<GroupCardProps> = ({
     >
       <View
         className="w-14 h-14 rounded-[11px] justify-center items-center shrink-0"
-        style={{ backgroundColor: `${group.color}1A` }}
+        style={{ backgroundColor: group.color }}
       >
-        <Text className="text-3xl">{group.emoji}</Text>
+        {group.icon ? (
+          <Feather name={group.icon} size={20} color="#FFFFFF" />
+        ) : (
+          <Text className="text-3xl">{group.emoji}</Text>
+        )}
       </View>
 
       <View className="flex-1 min-w-0">
