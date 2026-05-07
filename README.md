@@ -1,4 +1,4 @@
-# Fairly - Smart Expense Splitting & Group Bill Manager
+# Fairly - Group Bill Manager
 
 **Fairly** is a modern, cross-platform expense splitting app that makes managing shared costs easy and fair. Whether you're splitting bills with roommates, tracking expenses on a trip, or managing group finances with friends, Fairly ensures everyone pays their fair share with transparency and simplicity.
 
