@@ -3,8 +3,7 @@ import React from "react";
 import { Text, View } from "react-native";
 
 interface GroupSummaryCardProps {
-  emoji?: string;
-  icon?: keyof typeof Feather.glyphMap;
+  icon: keyof typeof Feather.glyphMap;
   color: string;
   owedLabel: string;
   netBalance: number;
@@ -17,7 +16,6 @@ function formatAmount(amount: number, symbol: string) {
 }
 
 export const GroupSummaryCard: React.FC<GroupSummaryCardProps> = ({
-  emoji,
   icon,
   color,
   owedLabel,
@@ -32,11 +30,7 @@ export const GroupSummaryCard: React.FC<GroupSummaryCardProps> = ({
           className="h-24 w-24 items-center justify-center rounded-[16px]"
           style={{ backgroundColor: color }}
         >
-          {icon ? (
-            <Feather name={icon} size={34} color="#FFFFFF" />
-          ) : (
-            <Text className="text-5xl">{emoji}</Text>
-          )}
+          <Feather name={icon} size={34} color="#FFFFFF" />
         </View>
 
         <View className="flex-1">

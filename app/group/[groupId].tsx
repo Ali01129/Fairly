@@ -8,6 +8,7 @@ import {
   GroupSummaryCard,
 } from "@/components/group";
 import { SectionLabel } from "@/components/home";
+import { AddMemberModal } from "@/components/modal";
 import {
   getExpensesForGroup,
   getGroupById,
@@ -15,7 +16,7 @@ import {
 } from "@/constants/mockData";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -60,6 +61,16 @@ export default function GroupScreen() {
   const owedLabel =
     netBalance < 0 ? "YOU OWE IN THIS GROUP" : "THEY OWE YOU IN THIS GROUP";
 
+  const [isAddMemberVisible, setIsAddMemberVisible] = useState(false);
+
+  const availableUsers = summary.members.map((m) => ({
+    id: m.id,
+    name: m.name,
+    email: `${m.name.replace(/\s+/g, "").toLowerCase()}@example.com`,
+    avatar: m.avatar,
+    color: m.color,
+  }));
+
   return (
     <SafeAreaView className="flex-1" style={{ backgroundColor }}>
       <View className="flex-1 px-5 pt-2">
@@ -67,6 +78,17 @@ export default function GroupScreen() {
           groupName={group.name}
           memberCount={group.members.length}
           onBack={() => router.replace("/")}
+          onMembersPress={() => setIsAddMemberVisible(true)}
+        />
+
+        <AddMemberModal
+          visible={isAddMemberVisible}
+          onClose={() => setIsAddMemberVisible(false)}
+          onAddMember={(user) => {
+            console.log("Added member:", user);
+            setIsAddMemberVisible(false);
+          }}
+          availableUsers={availableUsers}
         />
 
         <ScrollView
@@ -75,7 +97,6 @@ export default function GroupScreen() {
           contentContainerStyle={{ paddingTop: 16, paddingBottom: 96 }}
         >
           <GroupSummaryCard
-            emoji={group.emoji}
             icon={group.icon}
             color={group.color}
             owedLabel={owedLabel}
