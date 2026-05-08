@@ -1,21 +1,21 @@
 import CardRow from "@/components/common/CardRow";
+import { TabsComponent } from "@/components/common/Tabs";
 import {
-    Group,
-    GROUP_BALANCES,
-    GroupWithBalance,
-    MOCK_GROUPS,
+  Group,
+  GROUP_BALANCES,
+  GroupWithBalance,
+  MOCK_GROUPS,
 } from "@/constants/mockData";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Alert, ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
-    GroupTabs,
-    HeroBalanceCard,
-    NewGroupCard,
-    SectionLabel,
-    TopBar,
+  HeroBalanceCard,
+  NewGroupCard,
+  SectionLabel,
+  TopBar,
 } from "../../components/home";
 
 export default function HomeScreen() {
@@ -43,7 +43,15 @@ export default function HomeScreen() {
 
   const overallNet = totalOwed - totalOwe;
 
-  // Handlers
+  // Filter groups by category
+  const filteredGroups = useMemo(() => {
+    if (activeTab === "All groups") {
+      return groupsWithBalance;
+    }
+    return groupsWithBalance.filter(
+      (item) => item.group.category === activeTab,
+    );
+  }, [activeTab, groupsWithBalance]);
   const handleOpenGroup = (groupId: string) => {
     router.push({ pathname: "/group/[groupId]", params: { groupId } });
   };
@@ -89,25 +97,29 @@ export default function HomeScreen() {
           />
 
           {/* Group Tabs Filter */}
-          <GroupTabs activeTab={activeTab} onTabChange={setActiveTab} />
+          <TabsComponent
+            tabs={["All groups", "Trips", "Roommates", "Friends", "Couples"]}
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+          />
 
           {/* Groups Section */}
           <SectionLabel
-            title={`Your groups - ${groups.length}`}
+            title={`Your groups - ${filteredGroups.length}`}
             subtitle="Sort: Recent"
           />
 
           {/* Group Cards */}
           <View>
-            {groupsWithBalance.map(({ group, myNet }) => (
+            {filteredGroups.map(({ group, myNet }) => (
               <CardRow
                 key={group.id}
                 left={{
                   icon: group.icon as any,
-                  emoji: group.emoji,
                   backgroundColor: group.color,
                 }}
                 title={group.name}
+                subtitle={`${group.category} • ${group.members.length} members`}
                 members={group.members}
                 expensesCount={group.expensesCount}
                 amount={myNet}

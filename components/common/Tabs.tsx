@@ -1,20 +1,20 @@
 import React from "react";
 import { Pressable, Text, View } from "react-native";
 
-const ACTIVITY_TABS = ["All Activities", "Expenses", "Payments", "@You"];
-
-type ActivityTabsProps = {
+interface TabsComponentProps {
+  tabs: string[];
   activeTab: string;
   onTabChange: (tab: string) => void;
-};
+}
 
-export default function ActivityTabs({
+export const TabsComponent: React.FC<TabsComponentProps> = ({
+  tabs,
   activeTab,
   onTabChange,
-}: ActivityTabsProps) {
+}) => {
   return (
     <View className="mt-6 flex-row items-start gap-2">
-      {ACTIVITY_TABS.map((tab) => {
+      {tabs.map((tab) => {
         const isActive = activeTab === tab;
 
         return (
@@ -33,4 +33,4 @@ export default function ActivityTabs({
       })}
     </View>
   );
-}
+};

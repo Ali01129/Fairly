@@ -6,7 +6,7 @@ import { GROUP_COLORS } from "./types";
 export interface Group {
   id: string;
   name: string;
-  emoji: string;
+  category: string;
   icon: keyof typeof Feather.glyphMap;
   color: string;
   members: string[];
@@ -48,8 +48,8 @@ export const MOCK_GROUPS: Group[] = [
   {
     id: "1",
     name: "Lisbon, May '26",
-    emoji: "🇵🇹",
     icon: "image",
+    category: "Trips",
     color: GROUP_COLORS[0],
     members: ["user1", "user2", "user3"],
     expensesCount: 7,
@@ -57,8 +57,8 @@ export const MOCK_GROUPS: Group[] = [
   {
     id: "2",
     name: "Flat 4B",
-    emoji: "🏠",
     icon: "home",
+    category: "Roommates",
     color: GROUP_COLORS[1],
     members: ["user1", "user4"],
     expensesCount: 4,
@@ -66,8 +66,8 @@ export const MOCK_GROUPS: Group[] = [
   {
     id: "3",
     name: "Climbing crew",
-    emoji: "🧗",
     icon: "users",
+    category: "Friends",
     color: GROUP_COLORS[2],
     members: ["user1", "user2", "user5"],
     expensesCount: 2,

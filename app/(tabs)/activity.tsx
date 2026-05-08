@@ -2,20 +2,21 @@ import React, { useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { ActivitySectionLabel, ActivityTabs } from "@/components/activity";
+import { ActivitySectionLabel } from "@/components/activity";
 import CardRow from "@/components/common/CardRow";
+import { TabsComponent } from "@/components/common/Tabs";
 import { ACTIVITY_SECTIONS } from "@/constants/mockData";
 import { useThemeColor } from "@/hooks/use-theme-color";
 
 export default function ActivityScreen() {
   const backgroundColor = useThemeColor({}, "background");
-  const [activeTab, setActiveTab] = useState<string>("All activity");
+  const [activeTab, setActiveTab] = useState<string>("All Activities");
 
   const filteredSections = useMemo(() => {
     return ACTIVITY_SECTIONS.map((section) => ({
       ...section,
       items:
-        activeTab === "All activity"
+        activeTab === "All Activities"
           ? section.items
           : section.items.filter((item) => item.type === activeTab),
     })).filter((section) => section.items.length > 0);
@@ -33,7 +34,11 @@ export default function ActivityScreen() {
           </Text>
         </View>
 
-        <ActivityTabs activeTab={activeTab} onTabChange={setActiveTab} />
+        <TabsComponent
+          tabs={["All Activities", "Expenses", "Payments", "@You"]}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+        />
 
         <ScrollView
           className="flex-1"
