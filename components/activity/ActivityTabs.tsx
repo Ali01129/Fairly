@@ -1,7 +1,7 @@
 import React from "react";
 import { Pressable, Text, View } from "react-native";
 
-const ACTIVITY_TABS = ["All activity", "Expenses", "Payments", "@You"];
+const ACTIVITY_TABS = ["All Activities", "Expenses", "Payments", "@You"];
 
 type ActivityTabsProps = {
   activeTab: string;
@@ -21,11 +21,10 @@ export default function ActivityTabs({
           <Pressable
             key={tab}
             onPress={() => onTabChange(tab)}
-            className={`h-[46px] shrink-0 justify-center rounded-3xl px-4 ${isActive ? "bg-[#101013]" : "bg-[#F4F3EF]"}`}
+            className={`justify-center rounded-full p-4 ${isActive ? "bg-black" : "bg-[#F4F3EF]"}`}
           >
             <Text
               className={`text-base ${isActive ? "font-semibold text-white" : "font-normal text-[#3D3D3D]"}`}
-              style={{ letterSpacing: -0.2 }}
             >
               {tab}
             </Text>
