@@ -1,8 +1,9 @@
+import CardRow from "@/components/common/CardRow";
 import {
-  Group,
-  GROUP_BALANCES,
-  GroupWithBalance,
-  MOCK_GROUPS,
+    Group,
+    GROUP_BALANCES,
+    GroupWithBalance,
+    MOCK_GROUPS,
 } from "@/constants/mockData";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { useRouter } from "expo-router";
@@ -10,12 +11,11 @@ import React, { useState } from "react";
 import { Alert, ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
-  GroupCard,
-  GroupTabs,
-  HeroBalanceCard,
-  NewGroupCard,
-  SectionLabel,
-  TopBar,
+    GroupTabs,
+    HeroBalanceCard,
+    NewGroupCard,
+    SectionLabel,
+    TopBar,
 } from "../../components/home";
 
 export default function HomeScreen() {
@@ -100,12 +100,19 @@ export default function HomeScreen() {
           {/* Group Cards */}
           <View>
             {groupsWithBalance.map(({ group, myNet }) => (
-              <GroupCard
+              <CardRow
                 key={group.id}
-                group={group}
-                myNet={myNet}
+                left={{
+                  icon: group.icon as any,
+                  emoji: group.emoji,
+                  backgroundColor: group.color,
+                }}
+                title={group.name}
+                members={group.members}
+                expensesCount={group.expensesCount}
+                amount={myNet}
                 symbol={currencySymbol}
-                onPress={handleOpenGroup}
+                onPress={() => handleOpenGroup(group.id)}
               />
             ))}
           </View>

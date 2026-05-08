@@ -1,4 +1,4 @@
-export { GroupCard } from "./GroupCard";
+export { default as GroupCard } from "../common/CardRow";
 export { GroupTabs } from "./GroupTabs";
 export { HeroBalanceCard } from "./HeroBalanceCard";
 export { NewGroupCard } from "./NewGroupCard";

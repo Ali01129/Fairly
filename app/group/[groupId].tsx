@@ -1,21 +1,22 @@
-import { ActivityRow, ActivitySectionLabel } from "@/components/activity";
+import ActivitySectionLabel from "@/components/activity/ActivitySectionLabel";
+import CardRow from "@/components/common/CardRow";
 import {
-    GroupActionButtons,
-    GroupBalancesList,
-    GroupHeader,
-    GroupMembersList,
-    GroupSummaryCard,
+  GroupActionButtons,
+  GroupBalancesList,
+  GroupHeader,
+  GroupMembersList,
+  GroupSummaryCard,
 } from "@/components/group";
 import { SectionLabel } from "@/components/home";
 import {
-    getExpensesForGroup,
-    getGroupById,
-    getGroupSummaryById,
+  getExpensesForGroup,
+  getGroupById,
+  getGroupSummaryById,
 } from "@/constants/mockData";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useMemo } from "react";
-import { ScrollView, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function GroupScreen() {
@@ -110,7 +111,22 @@ export default function GroupScreen() {
               <View key={section.label} className="mb-5">
                 <ActivitySectionLabel label={section.label} />
                 {section.items.map((item) => (
-                  <ActivityRow key={item.id} item={item} />
+                  <CardRow
+                    key={item.id}
+                    left={{
+                      icon: item.categoryIcon,
+                      backgroundColor: `${item.groupColor || "#CCCCCC"}1A`,
+                    }}
+                    title={
+                      <>
+                        <Text className="font-semibold">{item.person}</Text>{" "}
+                        <Text className="font-normal">{item.activity}</Text>
+                      </>
+                    }
+                    subtitle={item.group}
+                    amount={item.amount}
+                    symbol={item.symbol}
+                  />
                 ))}
               </View>
             ))}

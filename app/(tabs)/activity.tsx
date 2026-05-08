@@ -2,11 +2,8 @@ import React, { useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import {
-  ActivityRow,
-  ActivitySectionLabel,
-  ActivityTabs,
-} from "@/components/activity";
+import { ActivitySectionLabel, ActivityTabs } from "@/components/activity";
+import CardRow from "@/components/common/CardRow";
 import { ACTIVITY_SECTIONS } from "@/constants/mockData";
 import { useThemeColor } from "@/hooks/use-theme-color";
 
@@ -49,7 +46,22 @@ export default function ActivityScreen() {
                 <ActivitySectionLabel label={section.label} />
 
                 {section.items.map((item) => (
-                  <ActivityRow key={item.id} item={item} />
+                  <CardRow
+                    key={item.id}
+                    left={{
+                      icon: item.categoryIcon,
+                      backgroundColor: `${item.groupColor || "#CCCCCC"}1A`,
+                    }}
+                    title={
+                      <>
+                        <Text className="font-semibold">{item.person}</Text>{" "}
+                        <Text className="font-normal">{item.activity}</Text>
+                      </>
+                    }
+                    subtitle={item.group}
+                    amount={item.amount}
+                    symbol={item.symbol}
+                  />
                 ))}
               </View>
             ))
