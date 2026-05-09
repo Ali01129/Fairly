@@ -26,7 +26,7 @@ export function AddExpenseAmountSection({
           €
         </Text>
         <TextInput
-          className="ml-2 min-w-[130px] text-6xl font-black text-[#76736E]"
+          className="text-6xl font-black text-[#76736E]"
           style={{ letterSpacing: -1.2, lineHeight: 66 }}
           keyboardType="decimal-pad"
           value={amountInput}
